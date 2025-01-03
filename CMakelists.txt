@@ -1,0 +1,26 @@
+# Minimum required CMake version
+cmake_minimum_required(VERSION 3.10)
+
+# Project name and language
+project(MyProject LANGUAGES CXX)
+
+# Set the C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CPP_SRC_DIR src)
+set(MAIN_SRC_FILE main.cpp)
+
+if(WIN32)
+    # Add a global definition for the WINDOWS macro
+    add_definitions(-DWINDOWS)
+endif()
+
+
+
+# Find all .cpp files in the src directory (non-recursive)
+file(GLOB CPP_SOURCES "${CPP_SRC_DIR}/*.cpp")
+
+# Add the executable target
+add_executable(driver_code ${CPP_SOURCES} ${MAIN_SRC_FILE})
